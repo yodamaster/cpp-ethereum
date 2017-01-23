@@ -625,6 +625,8 @@ std::pair<ExecutionResult, TransactionReceipt> State::execute(EnvInfo const& _en
 		}
 #endif
 		// TODO: CHECK TRIE after level DB flush to make sure exactly the same.
+
+		clog(ExecutiveWarnChannel) << "Tx " << _t.sha3() << " after commit, state root: " << rootHash();
 	}
 
 	return make_pair(res, TransactionReceipt(rootHash(), startGasUsed + e.gasUsed(), e.logs()));

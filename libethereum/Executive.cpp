@@ -470,6 +470,8 @@ void Executive::finalize()
 		m_res->newAddress = m_newAddress;
 		m_res->gasRefunded = m_ext ? m_ext->sub.refunds : 0;
 	}
+
+	clog(ExecutiveWarnChannel) << "Tx " << m_t.sha3() << " finalized, state root: " << m_s.rootHash();
 }
 
 void Executive::revert()
@@ -480,4 +482,6 @@ void Executive::revert()
 	// Set result address to the null one.
 	m_newAddress = {};
 	m_s.rollback(m_savepoint);
+
+	clog(ExecutiveWarnChannel) << "Tx " << m_t.sha3() << " reverted, state root: " << m_s.rootHash();
 }
