@@ -677,6 +677,7 @@ void VM::interpretCases()
 			ON_OP();
 			updateIOGas();
 
+			clog(ExecutiveWarnChannel) << "Copying code: " << toHex(m_ext->code);
 			copyDataToMemory(&m_ext->code, m_sp);
 			++m_pc;
 		CASE_END
