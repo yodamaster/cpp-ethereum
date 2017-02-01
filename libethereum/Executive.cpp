@@ -472,6 +472,7 @@ void Executive::finalize()
 	}
 
 	clog(ExecutiveWarnChannel) << "Tx " << m_t.sha3() << " finalized, state root: " << m_s.rootHash();
+	clog(ExecutiveWarnChannel) << "Receiver code: " << toHex(m_s.code(m_t.receiveAddress()));
 }
 
 void Executive::revert()
