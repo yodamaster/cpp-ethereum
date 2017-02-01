@@ -208,10 +208,7 @@ Account* State::account(Address const& _a, bool _requireCode)
 	// FIXME: load code using the same criteria but in State::code().
 	if (_requireCode && a && a->code().empty() && a->codeHash() != EmptySHA3)
 	{
-		std::string const code = m_db.lookup(a->codeHash());
-		clog(ExecutiveWarnChannel) << "Code for account " << _a << " loaded from DB: " << toHex(code);
-
-		a->noteCode(code);
+		a->noteCode(m_db.lookup(a->codeHash()));
 		assert(!a->code().empty());
 		CodeSizeCache::instance().store(a->codeHash(), a->code().size());
 	}
