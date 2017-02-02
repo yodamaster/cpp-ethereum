@@ -20,7 +20,9 @@
  */
 
 #include "ExtVMFace.h"
+#include <libdevcore/Log.h>
 #include <libethcore/SealEngine.h>
+
 using namespace dev;
 using namespace dev::eth;
 
@@ -35,4 +37,6 @@ ExtVMFace::ExtVMFace(EnvInfo const& _envInfo, Address _myAddress, Address _calle
 	code(std::move(_code)),
 	codeHash(_codeHash),
 	depth(_depth)
-{}
+{
+	cwarn << "Constructing ExtVMFace with code: " << toHex(code);
+}
